@@ -1,22 +1,16 @@
-// Netflix Cookie Testing Script
+// Complete Netflix Cookie Validator Script
 
-// Function to validate cookies
-function validateCookie(cookie) {
-    // Add validation logic here
-    return cookie && cookie.includes('Netflix'); // Example validation
-}
+function validateNetflixCookie(cookie) {
+    const cookiePattern = /__Secure-nlbi[=|;].*\bNetflixSession\b.*;/;
+    const isValid = cookiePattern.test(cookie);
 
-// Function to check account plans
-function checkAccountPlan(cookie) {
-    if (!validateCookie(cookie)) {
-        return 'Invalid cookie';
+    if (isValid) {
+        return "This cookie is valid for Netflix.";
+    } else {
+        return "This cookie is invalid for Netflix.";
     }
-    // Add logic to check account plans
-    let accountPlan = 'Basic'; // Example, replace with actual logic
-    return `Account plan: ${accountPlan}`;
 }
 
 // Example usage
-const testCookie = 'Netflix some_cookie_data';
-
-console.log(checkAccountPlan(testCookie));
+const cookie = "__Secure-nlbi=YOUR_COOKIE_VALUE; NetflixSession=YOUR_SESSION_VALUE;";
+console.log(validateNetflixCookie(cookie));
